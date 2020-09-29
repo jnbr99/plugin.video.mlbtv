@@ -75,14 +75,14 @@ def create_game_listitem(game, game_day):
         home_team = game['teams']['home']['team']['abbreviation']
 
     title = away_team + ' at ' + home_team
-    title = title.encode('utf-8')
+    title = title
 
     fav_game = False
-    if game['teams']['away']['team']['name'].encode('utf-8') in FAV_TEAM:
+    if game['teams']['away']['team']['name'] in FAV_TEAM:
         fav_game = True
         away_team = colorString(away_team, getFavTeamColor())
 
-    if game['teams']['home']['team']['name'].encode('utf-8') in FAV_TEAM:
+    if game['teams']['home']['team']['name'] in FAV_TEAM:
         fav_game = True
         home_team = colorString(home_team, getFavTeamColor())
 
@@ -148,11 +148,11 @@ def create_game_listitem(game, game_day):
         name += ' at ' + home_team
         if 'linescore' in game: name += ' ' + colorString(str(game['linescore']['teams']['home']['runs']), SCORE_COLOR)
         try:
-            desc = game['content']['editorial']['recap']['mlb']['headline'].encode('utf-8')
+            desc = game['content']['editorial']['recap']['mlb']['headline']
         except:
             pass
 
-    name = name.encode('utf-8')
+    name = name
     if fav_game:
         name = '[B]' + name + '[/B]'
 
@@ -211,11 +211,11 @@ def stream_select(game_pk):
                 if 'HOME' in title.upper():
                     media_state.insert(0, item['mediaState'])
                     content_id.insert(0, item['contentId'])
-                    stream_title.insert(1, title + " (" + item['callLetters'].encode('utf-8') + ")")
+                    stream_title.insert(1, title + " (" + item['callLetters'] + ")")
                 else:
                     media_state.append(item['mediaState'])
                     content_id.append(item['contentId'])
-                    stream_title.append(title + " (" + item['callLetters'].encode('utf-8') + ")")
+                    stream_title.append(title + " (" + item['callLetters'] + ")")
 
     # All past games should have highlights
     if len(stream_title) == 0:

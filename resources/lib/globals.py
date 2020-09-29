@@ -2,12 +2,14 @@
 import sys, re, os, time
 import calendar, pytz
 import urllib, requests
-import cookielib
+import http
 from datetime import date, datetime, timedelta
-import xbmc, xbmcplugin, xbmcgui, xbmcaddon
+from kodi_six import xbmc, xbmcplugin, xbmcgui, xbmcaddon
 
 addon_handle = int(sys.argv[1])
-
+if sys.version_info[0] > 2:
+    urllib = urllib.parse
+    cookielib = http.cookiejar
 
 #Addon Info
 ADDON = xbmcaddon.Addon()
